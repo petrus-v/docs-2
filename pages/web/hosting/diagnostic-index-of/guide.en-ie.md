@@ -26,7 +26,7 @@ If a `Multisite` configuration is not correctly configured, your website may dis
 ## Requirements
 
 - a [web hosting plan](https://www.ovh.ie/web-hosting/)
-- access to the [OVHcloud Control Panel](	https://www.ovh.com/auth/?action=gotomanager&from=https://www.ovh.ie/&ovhSubsidiary=ie)
+- access to the [OVHcloud Control Panel](https://www.ovh.com/auth/?action=gotomanager&from=https://www.ovh.ie/&ovhSubsidiary=ie)
 
 ## Instructions
 
