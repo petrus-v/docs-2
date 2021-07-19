@@ -107,7 +107,7 @@ sudo systemctl restart networking
 
 Open the network configuration file located in `/etc/netplan/` for editing. Here the file is called `50-cloud-init.yaml`.
 
-```sh
+```bash
 nano /etc/netplan/50-cloud-init.yaml
 ```
 
@@ -127,7 +127,7 @@ network:
               macaddress: 0c:xx:xx:xx:xx:63
             nameservers:
               addresses:
-              - 213.186.33.99
+                - 213.186.33.99
             set-name: ens33f0
 ```
 
@@ -150,6 +150,41 @@ sudo netplan apply
 #### Proxmox
 
 
+```bash
+source /etc/network/interfaces.d/*
+```
+
+`/etc/network/interfaces.d/50-cloud-init`:
+
+
+```bash
+auto lo
+iface lo inet loopback
+  dns-nameservers 213.186.33.99
+ 
+auto ens33f0
+iface ens33f0 inet manual
+  mtu 1500
+ 
+iface ens33f0 inet6 static
+  address 2001:41d0:203:8c05::/64
+  dns-nameservers 2001:41d0:3:163::1
+  gateway fe80::1
+ 
+auto vmbr0
+iface vmbr0 inet dhcp
+  bridge-ports ens33f0
+  bridge-stp off
+  bridge-fd 0
+ 
+iface vmbr0 inet6 static
+  address 2001:41d0:203:8c05::/64
+  dns-nameservers 2001:41d0:3:163::1
+  gateway fe80::1
+  bridge-ports ens33f0
+  bridge-stp off
+  bridge-fd 0
+```
 
 
 #### Red Hat
